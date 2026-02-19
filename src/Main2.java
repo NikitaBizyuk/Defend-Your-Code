@@ -153,7 +153,8 @@ public class Main2 {
                     "\t2) Special characters such as (- and ') are permitted.\n" +
                     "\t3) input length must be >= 1 and <= 50\n";
 
-    System.out.println("PLEASE ENTER YOUR " + firstLastName + ":\n" +
+    delimiter();
+    System.out.println("\nPLEASE ENTER YOUR " + firstLastName + ":\n" +
             requirements + "\nENTER " + firstLastName + ":");
 
     String name = input.nextLine();
@@ -161,6 +162,7 @@ public class Main2 {
 
     // Defensive loop: keep prompting until regex passes
     while (!m.matches()) {
+      delimiter();
       System.out.println("HOUSTON WE HAVE A PROBLEM! " + requirements + "\t" + name +
               "\tDoes not meet the following requirements." +
               "\n\tPlease try again!");
@@ -190,6 +192,7 @@ public class Main2 {
     // Allows comma formatting (e.g., 1,000). Then commas are removed.
     Pattern p = Pattern.compile("^[+-]?(?:\\d{1,3}(?:,\\d{3})*|\\d+)$");
 
+    delimiter();
     System.out.println(promptUser);
     String userInput = input.nextLine();
 
@@ -217,6 +220,7 @@ public class Main2 {
     Matcher m = p.matcher(userInput);
 
     while (!m.matches()) {
+      delimiter();
       System.out.println("\tYour input does not match the requirements listed above.\n" +
               "\tPLEASE ENTER A VALUE FOR " + intVal +
               "\n" + requirements + "\n" + intVal + ":");
@@ -245,10 +249,12 @@ public class Main2 {
     while ((theInput.compareTo(maxVal) > 0) || (theInput.compareTo(minVal) < 0)) {
 
       if (theInput.compareTo(maxVal) > 0) {
+        delimiter();
         System.out.println("Your input was greater then the value of 2,147,483,647\n" +
                 "\tthis will result in an integer overflow.\n" +
                 "Please try again:");
       } else {
+        delimiter();
         System.out.println("Your input was less then the value of -2,147,483,648\n" +
                 "this will result in an integer overflow.\n" +
                 "Please try again:");
@@ -279,7 +285,7 @@ public class Main2 {
             "-length of file name must be greater than or equal to 1");
 
     Pattern p = Pattern.compile("^[A-Za-z0-9._-]+\\.txt$");
-
+    delimiter();
     System.out.println("\nPlease enter an " + io + " name that matches the requirements listed below: \n" +
             requirements + "\n" +
             "Enter " + io + " name: ");
@@ -287,6 +293,7 @@ public class Main2 {
     Matcher m = p.matcher(userInput);
 
     while (!m.matches()) {
+      delimiter();
       System.out.println("File name or type does not follow the requirements listed below: \n"
               + requirements + "\n" +
               "Please enter " + io + " file name here: ");
@@ -632,5 +639,9 @@ public class Main2 {
     } catch (IOException ignored) {
       // Never crash from the logger.
     }
+  }
+  public static void delimiter(){
+    System.out.println("\n-----------------------------------" +
+            "-------------------------------------\n");
   }
 }
